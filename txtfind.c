@@ -36,7 +36,7 @@ int get_line(char s[]){
     for(int i =0; i<LINE; i++){
 
         if (scanf("%c", &(c)) == EOF)
-            return count;
+            return 0;
 
         (s[i])=c;
         
