@@ -35,21 +35,24 @@ int get_line(char s[]){
     char c;
     for(int i =0; i<LINE; i++){
 
-        scanf("%c", &(c));
-        if(s[i] != '\r'){
+        if (scanf("%c", &(c)) == EOF)
+        {
+            s[i] = '\0';
+            break;
+        }
 
-            (s[i])=c;
+        (s[i])=c;
         
-            if(s[i] != '\n'){
-                count++;
-            }
-            else{
-                s[i] = '\0';
-               count++;
-                break;
-            }
-         }
-    }return count; 
+        if(s[i] != '\n'){
+            count++;
+        }
+        else{
+            s[i] = '\0';
+            break;
+        }
+    }
+    
+    return count; 
 }
 
 int get_word(char w[]){
@@ -128,10 +131,11 @@ void print_lines(char * str){
    
    char s[LINE_IN_TEXT] = { 0 };
    int i = 0;
+   int c = 1;
 
-   while(i < LINE_IN_TEXT && s[i]!= '\0'){
+   while(i < LINE_IN_TEXT && c != 0){
     i++;
-    get_line(s);
+    c = get_line(s);
     if(substring(s,str)==1) {
             printf("%s\n",s);
             
